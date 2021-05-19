@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <script src="js/p5.js"></script>
+    <script src="js/p5.dom.min.js"></script>
+    <script src="js/p5.sound.min.js"></script>
+
+    <!-- socket.io -->
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="sketch.js"></script>
+
+    <!-- Typeface -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+    body {
+        font-family: 'Poppins';font-size: 22px;
+    }
+    </style>
+
+    <title>Minimal Poster Generator</title>
+  </head>
+
+  <body style="background-color: #353743">
+    <div class="page-header p-5">
+        <h2 style="color:white">Create your own minimal movie poster.</h2>
+    </div>
+    <div class="jumbotron text-center" style="background-color:#282A33">
+        <div class="row blog">
+          <div class="col-md-12">
+              <div id="blogCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+                  <!-- Carousel items -->
+                  <div class="carousel-inner">
+
+                      <div class="carousel-item active">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="../posters/94d05e2eb41f3ac0ff1571c525ca4321.jpg" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="../posters/7db31d81fe3325a87e902a3c85e3bd36.jpg" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="../posters/6eb97ec581788c597a39fc18d09ff37e.jpg" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="../posters/76703e9b165d6c58d67374a6fa3942e3.jpg" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="#">
+                                    <img src="../posters/black-widow-variant-movie-poster.jpeg" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                              <a href="#">
+                                  <img src="../posters/d551f14283b2ed2daa0b123a92c29eef.png" class="rounded mx-auto d-block" alt="Image" style="max-height:200px">
+                              </a>
+                          </div>
+                          </div>
+                          <!--.row-->
+                      </div>
+                      <!--.item-->
+
+                      <div class="carousel-item">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="#">
+                                    <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                  </a>
+                              </div>
+                              <div class="col-md-2">
+                                  <a href="#">
+                                      <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
+                                  </a>
+                              </div>
+                          </div>
+                          <!--.row-->
+                      </div>
+                      <!--.item-->
+                  </div>
+                  <!--.carousel-inner-->
+              </div>
+              <!--.Carousel-->
+              
+          </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="container">
+        <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-lg rounded-pill text-white" style="background-color:#8EC2FF">GENERATE</button>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+  </body>
+</html>

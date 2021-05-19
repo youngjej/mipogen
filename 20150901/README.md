@@ -2,9 +2,9 @@
 
 ## Basic info
 
-- **Your KAIST ID**: ...
-- **Your name**: ...
-- **Your email**: ...
+- **Your KAIST ID**: 20150901
+- **Your name**: Youngje Jo
+- **Your email**: youngjej@kaist.ac.kr
 
 ## Index of content
 
@@ -30,7 +30,7 @@
 ## Credits
 
 - Did you get help from anyone? Who?
-- Did you use online reources? Whic one?
+- Did you use online reources? Which one?
 
 ## License
 
