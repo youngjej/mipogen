@@ -21,9 +21,12 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
-app.use(express.static('posters'));
+const port = process.env.PORT || 3000;
+const server = require('http').createServer(app);
 
-const server = app.listen(3000, () => {
+app.use('/public', express.static(__dirname + '../client'));
+
+server.listen(port, () => {
   console.log('Server connected.');
 })
 
@@ -32,8 +35,8 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', function(req, res) {
-  res.render('index.html');
-  res.sendFile(path.join(__dirname, '../client/index.html'))
+  // res.render('index.html');
+  res.sendFile(path.join(__dirname, '../client/index2.html'))
 });
 
 app.get('/login', function(req, res) {
