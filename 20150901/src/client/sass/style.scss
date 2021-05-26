@@ -1,2 +1,7 @@
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
+$theme-bg : #353743;
+
+body{
+    background-color: $theme-bg
+}

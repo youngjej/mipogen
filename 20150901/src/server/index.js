@@ -36,7 +36,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/', function(req, res) {
   // res.render('index.html');
-  res.sendFile(path.join(__dirname, '../client/index2.html'))
+  res.sendFile(path.join(__dirname, '../client/index.html'))
 });
 
 app.get('/login', function(req, res) {
