@@ -16,8 +16,12 @@
 //   res.sendFile(path.join(__dirname, '../client/index.html'));
 // });
 
+const path = require('path');
 const express = require('express');
 const app = express();
+const fs = require('fs');
+
+app.use(express.static('posters'));
 
 const server = app.listen(3000, () => {
   console.log('Server connected.');
@@ -29,6 +33,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/', function(req, res) {
   res.render('index.html');
+  res.sendFile(path.join(__dirname, '../client/index.html'))
 });
 
 app.get('/login', function(req, res) {
