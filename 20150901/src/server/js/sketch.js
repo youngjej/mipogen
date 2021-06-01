@@ -13,11 +13,11 @@ function setup() {
     background('#353743');
 
     let titleInp = createInput('');
-    titleInp.position(windowWidth/2 + 180, windowHeight + 35);
+    titleInp.position(windowWidth/2 + 180, 200);
     titleInp.input(titleInput);
 
     let desInp = createInput('');
-    desInp.position(windowWidth/2 + 180, windowHeight + 100);
+    desInp.position(windowWidth/2 + 180, 250);
     desInp.input(desInput);
 
     fill('#FFFEFD');
