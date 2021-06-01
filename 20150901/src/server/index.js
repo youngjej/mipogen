@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 app.use(express.static(__dirname))
+
 app.get('/', (req, res)=>{
   res.sendFile(__dirname+'/html/index.html')
 })

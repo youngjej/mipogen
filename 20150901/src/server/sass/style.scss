@@ -1,7 +1,14 @@
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 $theme-bg : #353743;
+$nav-pills-border-radius: 15px;
+$nav-pills-link-active-color: #7DB1EE;
+$nav-pills-link-active-bg: #7DB1EE;
 
 body{
     background-color: $theme-bg
 }
+
+@import '../../node_modules/bootstrap/scss/_nav.scss';
+
+$nav-pills-link-active-bg: theme-color("info");
