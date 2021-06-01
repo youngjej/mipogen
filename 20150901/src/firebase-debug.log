@@ -1,0 +1,39 @@
+[debug] [2021-06-01T16:51:27.192Z] ----------------------------------------------------------------------
+[debug] [2021-06-01T16:51:27.194Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yakdo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2021-06-01T16:51:27.194Z] CLI Version:   9.12.0
+[debug] [2021-06-01T16:51:27.194Z] Platform:      win32
+[debug] [2021-06-01T16:51:27.194Z] Node Version:  v14.17.0
+[debug] [2021-06-01T16:51:27.195Z] Time:          Wed Jun 02 2021 01:51:27 GMT+0900 (대한민국 표준시)
+[debug] [2021-06-01T16:51:27.195Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-01T16:51:27.200Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-01T16:51:27.200Z] > authorizing via signed-in user (youngjej@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\yakdo\Documents\GitHub\Minimal_Poster_Generator\20150901\src
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2021-06-01T16:51:31.724Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2021-06-01T16:51:32.461Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2021-06-01T16:51:32.461Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project minimal-poster-generator (minimal poster generator) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
