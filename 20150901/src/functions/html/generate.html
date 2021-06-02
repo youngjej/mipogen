@@ -43,37 +43,35 @@
           </div>
         </div>
       </nav>
-    <div class="container">
-      <div class="card mx-auto" style=" background-color: #8EC2FF">
+    <div class="container-fluid">
+      <div class="card rounded-lg mx-auto" style=" background-color: #8EC2FF">
         <div class="card-header text-center" style="color:white">
           GENERATE
         </div>
-        <div class="card" style="width:5rem; background-color: #8EC2FF">
-          <ul class="nav flex-column nav-pills">
-            <li class="nav-item my-4">
-              <a class="nav-link active" aria-current="page" href="#">
-                <img src="../assets/TemplateIcon.png" class="img-fluid" style="max-height: 50px;" alt="...">
-              </a>
-            </li>
-            <li class="nav-item my-4">
-              <a class="nav-link" href="#">
-                <img src="../assets/TextIcon.png" class="img-fluid" style="max-height: 50px;" alt="...">
-              </a>
-            </li>
-            <li class="nav-item my-4">
-              <a class="nav-link" href="#">
-                <img src="../assets/ImageIcon.png" class="img-fluid" style="max-height: 50px;" alt="...">
-              </a>
-            </li>
-            <li class="nav-item my-4">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-                <img src="../assets/ShapeIcon.png" class="img-fluid" style="max-height: 50px;" alt="...">
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="container">
-          <script type="text/javascript" src="../js/sketch.js"></script>
+        <div class="row">
+          <div class="col-1">
+            <div class="container" style="width:11rem">
+              <div class="btn-group-vertical">
+                <button type="button" class="btn btn-secondary rounded-pill border-0 my-5" style="background-color:#8EC2FF">
+                  <img src="../assets/TemplateIcon.png" class="img-fluid" style="max-height: 60px;">
+                </button>
+                <button type="button" class="btn btn-secondary rounded-pill border-0 my-5" style="background-color:#8EC2FF">
+                  <img src="../assets/TextIcon.png" class="img-fluid" style="max-height: 60px;">
+                </button>
+                <button type="button" class="btn btn-secondary rounded-pill border-0 my-5" style="background-color:#8EC2FF">
+                  <img src="../assets/ImageIcon.png" class="img-fluid" style="max-height: 60px;">
+                </button>
+                <button type="button" class="btn btn-secondary rounded-pill border-0 my-5" style="background-color:#8EC2FF">
+                  <img src="../assets/ShapeIcon.png" class="img-fluid" style="max-height: 60px;">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-10">
+            <div id="canvas" class="jumbotron" style="background-color: #ddd;">
+              <script src="../js/sketch.js"></script>
+            </div> 
+          </div>
         </div>
       </div>
     </div>

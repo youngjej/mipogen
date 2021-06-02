@@ -12,3 +12,8 @@ body{
 @import '../../node_modules/bootstrap/scss/_nav.scss';
 
 $nav-pills-link-active-bg: theme-color("info");
+
+$border-radius:               .25rem;
+$border-radius-sm:            .2rem;
+$border-radius-lg:            3rem;
+$border-radius-pill:          50rem;

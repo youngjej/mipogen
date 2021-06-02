@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server",
-    "watch": "nodemon ./server --ignore client"
+    "start": "node ./functions",
+    "watch": "nodemon ./functions --ignore client"
   },
   "keywords": [],
   "author": "",
