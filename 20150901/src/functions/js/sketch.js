@@ -4,59 +4,56 @@ const paperSize = 297;
 let titleString = 'TITLE';
 let desString = 'description';
 
+let tempMode = true;
+let textMode = false;
+let imageMode = false;
+let shapeMode = false;
+
+var canvas;
+
 function setup() {
-    const canvasWidth = 1550;
+    let canvasWidth = windowWidth*0.7;
     const canvasHeight = 650;
     const tabWidth = 120;
 
-    var canvas = createCanvas(canvasWidth, canvasHeight);
-    background(0);
+
+    canvas = createCanvas(canvasWidth, canvasHeight);
 
     canvas.parent('canvas');
 
-    tab = new Tab(windowWidth/2 - 500, 40, tabWidth, canvasHeight);
     p = new Poster(canvasWidth/2, canvasHeight/2, paperSize);
 
     
 }
 
 function draw() {
-    p.draw();
-    p.drawTitle();
-    p.drawDescription();
+    if (textMode) {
+        p.draw();
+        p.drawTitle();
+        p.drawDescription();
+    }
 }
 
-function titleInput() {
-    titleString = this.value();
+function windowResized() {
+    canvas = resizeCanvas(windowWidth*0.7, 650);
+    canvas.parent('canvas');
 }
 
-function desInput() {
-    desString = this.value();
+function tempChange() {
+    if (!tempMode) {
+        tempMode = true;
+        textMode = false;
+        imageMode = false;
+        shapeMode = false;
+    }
 }
 
-//Tab
-class Tab {
-    x;
-    y;
-    width;
-    height;
-
-    constructor(x, y, width, height) {
-        this.loc = createVector(x, y);
-        this.width = width;
-        this.height = height;
-    }
-
-    setTemplate() {
-        
-    }
-
-    setText() {
-
-    }
-
-    setImage() {
-
+function textChange() {
+    if (!textMode) {
+        tempMode = false;
+        textMode = true;
+        imageMode = false;
+        shapeMode = false;
     }
 }
 
@@ -67,9 +64,10 @@ class Poster {
     width;
     height;
 
-    constructor(x, y, size) {
+    constructor(x, y, size, temp) {
         this.loc = createVector(x, y);
         this.size = size;
+        this.temp = temp;
     }
 
     draw() {
