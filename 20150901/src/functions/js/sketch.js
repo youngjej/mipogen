@@ -6,14 +6,21 @@ let desString = 'description';
 
 let tempMode = true;
 let textMode = false;
-let imageMode = false;
+let imagemode = false;
 let shapeMode = false;
 
 var container;
-var buttons;
+var tempBut;
+var textBut;
+var imageBut;
+var shapeBut;
 
 function setup() {
     container = document.getElementById('canvas');
+    tempBut = document.getElementById('tempMode');
+    textBut = document.getElementById('textMode');
+    imageBut = document.getElementById('imagemode');
+    shapeBut = document.getElementById('shapeMode');
 
     var canvasWidth = container.offsetWidth;
     const canvasHeight = 650;
@@ -21,6 +28,7 @@ function setup() {
     let canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('canvas');
 
+    tempBut.classList.add('active');
 
     p1 = new Poster(canvasWidth/3, canvasHeight/4, paperSize/2, 1);
     p2 = new Poster(canvasWidth*2/3, canvasHeight/4, paperSize/2, 2);
@@ -113,7 +121,7 @@ function tempChange() {
     if (!tempMode) {
         tempMode = true;
         textMode = false;
-        imageMode = false;
+        imagemode = false;
         shapeMode = false;
     }
 }
@@ -122,8 +130,17 @@ function textChange() {
     if (!textMode) {
         tempMode = false;
         textMode = true;
-        imageMode = false;
+        imagemode = false;
         shapeMode = false;
+
+        tempBut.classList.remove('active');
+        textBut.classList.add('active');
+    }
+}
+
+function imageChange() {
+    if (!imagemode) {
+        tempMode = false;
     }
 }
 
@@ -206,11 +223,11 @@ class Poster {
     }
 
     move() {
-        if (this.loc.x < this.canvasWidth/2 - 5) this.loc.x = this.loc.x + 5;
-        else if (this.loc.x > this.canvasWidth/2 + 5) this.loc.x = this.loc.x - 5;
+        if (this.loc.x < this.canvasWidth/2 - 5) this.loc.x = this.loc.x + 6;
+        else if (this.loc.x > this.canvasWidth/2 + 5) this.loc.x = this.loc.x - 6;
 
-        if (this.loc.y < this.canvasHeight/2 - 5) this.loc.y = this.loc.y + 5;
-        else if (this.loc.y > this.canvasHeight/2 + 5) this.loc.y = this.loc.y - 5;
+        if (this.loc.y < this.canvasHeight/2 - 4) this.loc.y = this.loc.y + 4;
+        else if (this.loc.y > this.canvasHeight/2 + 4) this.loc.y = this.loc.y - 4;
         if (this.sizeX < paperSize) {
             this.sizeX = this.sizeX + 5;
         }
