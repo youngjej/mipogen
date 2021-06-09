@@ -9,34 +9,64 @@ let textMode = false;
 let imageMode = false;
 let shapeMode = false;
 
-var canvas;
+var container;
 
 function setup() {
-    let canvasWidth = windowWidth*0.7;
+    container = document.getElementById('canvas');
+
+    var canvasWidth = container.offsetWidth;
     const canvasHeight = 650;
-    const tabWidth = 120;
 
-
-    canvas = createCanvas(canvasWidth, canvasHeight);
-
+    let canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('canvas');
 
-    p = new Poster(canvasWidth/2, canvasHeight/2, paperSize);
 
-    
+    p1 = new Poster(canvasWidth/3, canvasHeight/4, paperSize/2, 1);
+    p2 = new Poster(canvasWidth*2/3, canvasHeight/4, paperSize/2, 2);
+    p3 = new Poster(canvasWidth/3, canvasHeight*3/4, paperSize/2, 3);
+    p4 = new Poster(canvasWidth*2/3, canvasHeight*3/4, paperSize/2, 4);
+
 }
 
 function draw() {
-    if (textMode) {
-        p.draw();
-        p.drawTitle();
-        p.drawDescription();
+    var canvasWidth = container.offsetWidth;
+    var canvasHeight = container.offsetHeight;
+
+    fill('#ddd');
+    rectMode(CORNER);
+    noStroke();
+    rect(30,20,canvasWidth-60,canvasHeight-40);
+
+    if (tempMode) {
+        p1.draw();
+        p1.drawText();
+        p1.drawImage();
+
+        p2.draw();
+        p2.drawText();
+
+        p3.draw();
+        p3.drawText();
+
+        p4.draw();
+        p4.drawText();
     }
+
+    if (textMode) {
+        p1.draw();
+    }
+    
 }
 
 function windowResized() {
-    canvas = resizeCanvas(windowWidth*0.7, 650);
-    canvas.parent('canvas');
+    var canvasWidth = container.offsetWidth;
+    const canvasHeight = 650;
+
+    resizeCanvas(canvasWidth, canvasHeight);
+    p1 = new Poster(canvasWidth/3, canvasHeight/4, paperSize/2, 1);
+    p2 = new Poster(canvasWidth*2/3, canvasHeight/4, paperSize/2, 2);
+    p3 = new Poster(canvasWidth/3, canvasHeight*3/4, paperSize/2, 3);
+    p4 = new Poster(canvasWidth*2/3, canvasHeight*3/4, paperSize/2, 4);
 }
 
 function tempChange() {
@@ -66,8 +96,10 @@ class Poster {
 
     constructor(x, y, size, temp) {
         this.loc = createVector(x, y);
-        this.size = size;
+        this.sizeX = size;
+        this.sizeY = size * sqrt(2);
         this.temp = temp;
+        this.img = loadImage('../assets/BlackImage.png')
     }
 
     draw() {
@@ -75,23 +107,49 @@ class Poster {
         fill('#FFFCF8');
         stroke(0);
         strokeWeight(1);
-        rect(this.loc.x, this.loc.y, this.size, this.size * sqrt(2));
+        rect(this.loc.x, this.loc.y, this.sizeX, this.sizeY);
     }
 
-    drawTitle() {
-        fill(0);
-        textAlign(CENTER);
-        textStyle(BOLD);
-        textSize(32);
-        text(titleString, this.loc.x, this.loc.y -150);
+    drawText() {
+        if (this.temp==1) {
+            fill(0);
+            textAlign(CENTER);
+            textSize(32/297*this.sizeX);
+            text(titleString, this.loc.x, this.loc.y*0.6);
+            textSize(18/297*this.sizeX);
+            text(desString, this.loc.x, this.loc.y*1.4);
+        }
+        else if (this.temp==2) {
+            fill(0);
+            textAlign(CENTER);
+            textSize(44/297*this.sizeX);
+            text(titleString, this.loc.x, this.loc.y*1.2);
+            textSize(18/297*this.sizeX);
+            text(desString, this.loc.x, this.loc.y*1.4);
+        }
+        else if (this.temp==3) {
+            fill(0);
+            textAlign(CENTER);
+            textSize(32/297*this.sizeX);
+            text(titleString, this.loc.x, this.loc.y*0.85);
+            textSize(18/297*this.sizeX);
+            text(desString, this.loc.x, this.loc.y*0.89);
+        }
+        else if (this.temp==4) {
+            fill(0);
+            textAlign(LEFT);
+            textSize(32/297*this.sizeX);
+            text(titleString, this.loc.x - this.sizeX*0.9/2, this.loc.y*0.82);
+            textSize(18/297*this.sizeX);
+            text(desString, this.loc.x - this.sizeX*0.9/2, this.loc.y*0.85);
+        }
     }
 
-    drawDescription() {
-        fill(0);
-        textAlign(CENTER);
-        textStyle(NORMAL);
-        textSize(18);
-        text(desString, this.loc.x, this.loc.y - 120);
+    drawImage() {
+        if (this.temp==1) {
+            let imageSize = this.sizeX*0.6;
+            image(this.img, this.loc.x-imageSize/2, this.loc.y-imageSize/2, imageSize, imageSize);
+        }
     }
 
     setTitle(string) {
