@@ -10,6 +10,7 @@ let imageMode = false;
 let shapeMode = false;
 
 var container;
+var buttons;
 
 function setup() {
     container = document.getElementById('canvas');
@@ -38,22 +39,33 @@ function draw() {
     rect(30,20,canvasWidth-60,canvasHeight-40);
 
     if (tempMode) {
+        fill(0);
+        textAlign(CENTER);
+        textSize(35);
+        text('Choose a template.',canvasWidth/2, canvasHeight/2)
+
         p1.draw();
         p1.drawText();
         p1.drawImage();
 
         p2.draw();
         p2.drawText();
+        p2.drawImage();
 
         p3.draw();
         p3.drawText();
+        p3.drawImage();
 
         p4.draw();
         p4.drawText();
+        p4.drawImage();
     }
 
     if (textMode) {
-        p1.draw();
+        temp.move();
+        temp.draw();
+        temp.drawText();
+        temp.drawImage();
     }
     
 }
@@ -67,6 +79,34 @@ function windowResized() {
     p2 = new Poster(canvasWidth*2/3, canvasHeight/4, paperSize/2, 2);
     p3 = new Poster(canvasWidth/3, canvasHeight*3/4, paperSize/2, 3);
     p4 = new Poster(canvasWidth*2/3, canvasHeight*3/4, paperSize/2, 4);
+
+    temp = new Poster(canvasWidth/2, canvasHeight/2, paperSize, 1);
+}
+
+function mouseClicked() {
+    var canvasWidth = container.offsetWidth;
+    const canvasHeight = 650;
+
+    if (tempMode) {
+        if ((mouseX > canvasWidth/3 - paperSize/4 && mouseX < canvasWidth/3 + paperSize/4)
+        && (mouseY > canvasHeight/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight/4 + paperSize*sqrt(2)/4)) {
+            temp = p1;
+            textChange();
+        }else if ((mouseX > canvasWidth*2/3 - paperSize/4 && mouseX < canvasWidth*2/3 + paperSize/4)
+        && (mouseY > canvasHeight/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight/4 + paperSize*sqrt(2)/4)) {
+            temp = p2;
+            textChange();
+        }else if ((mouseX > canvasWidth/3 - paperSize/4 && mouseX < canvasWidth/3 + paperSize/4)
+        && (mouseY > canvasHeight*3/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight*3/4 + paperSize*sqrt(2)/4)) {
+            temp = p3;
+            textChange();
+        }else if ((mouseX > canvasWidth*2/3 - paperSize/4 && mouseX < canvasWidth*2/3 + paperSize/4)
+        && (mouseY > canvasHeight*3/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight*3/4 + paperSize*sqrt(2)/4)) {
+            temp = p4;
+            textChange();
+        }
+
+    }
 }
 
 function tempChange() {
@@ -99,7 +139,9 @@ class Poster {
         this.sizeX = size;
         this.sizeY = size * sqrt(2);
         this.temp = temp;
-        this.img = loadImage('../assets/BlackImage.png')
+        this.img = loadImage('../assets/BlackImage.png');
+        this.canvasWidth = container.offsetWidth;
+        this.canvasHeight = 650;
     }
 
     draw() {
@@ -131,17 +173,17 @@ class Poster {
             fill(0);
             textAlign(CENTER);
             textSize(32/297*this.sizeX);
-            text(titleString, this.loc.x, this.loc.y*0.85);
+            text(titleString, this.loc.x, this.loc.y - this.sizeX/2);
             textSize(18/297*this.sizeX);
-            text(desString, this.loc.x, this.loc.y*0.89);
+            text(desString, this.loc.x, this.loc.y - this.sizeX/3);
         }
         else if (this.temp==4) {
             fill(0);
             textAlign(LEFT);
             textSize(32/297*this.sizeX);
-            text(titleString, this.loc.x - this.sizeX*0.9/2, this.loc.y*0.82);
+            text(titleString, this.loc.x - this.sizeX*0.9/2, this.loc.y - this.sizeY*0.85/2);
             textSize(18/297*this.sizeX);
-            text(desString, this.loc.x - this.sizeX*0.9/2, this.loc.y*0.85);
+            text(desString, this.loc.x - this.sizeX*0.9/2, this.loc.y - this.sizeY*0.75/2);
         }
     }
 
@@ -150,9 +192,30 @@ class Poster {
             let imageSize = this.sizeX*0.6;
             image(this.img, this.loc.x-imageSize/2, this.loc.y-imageSize/2, imageSize, imageSize);
         }
+        else if (this.temp==2) {
+            let imageSize = this.sizeX*0.6;
+            image(this.img, this.loc.x-imageSize/2, this.loc.y-imageSize, imageSize, imageSize);
+        }
+        else if (this.temp==3) {
+            let imageSize = this.sizeX*0.7;
+            image(this.img, this.loc.x-imageSize/2, this.loc.y-imageSize/4, imageSize, imageSize);
+        }else {
+            let imageSize = this.sizeX*0.8;
+            image(this.img, this.loc.x-imageSize/2, this.loc.y-imageSize/3, imageSize, imageSize);
+        }
     }
 
-    setTitle(string) {
+    move() {
+        if (this.loc.x < this.canvasWidth/2 - 5) this.loc.x = this.loc.x + 5;
+        else if (this.loc.x > this.canvasWidth/2 + 5) this.loc.x = this.loc.x - 5;
 
+        if (this.loc.y < this.canvasHeight/2 - 5) this.loc.y = this.loc.y + 5;
+        else if (this.loc.y > this.canvasHeight/2 + 5) this.loc.y = this.loc.y - 5;
+        if (this.sizeX < paperSize) {
+            this.sizeX = this.sizeX + 5;
+        }
+        if (this.sizeY < paperSize*sqrt(2)) {
+            this.sizeY = this.sizeY + 5*sqrt(2);
+        }
     }
 }
