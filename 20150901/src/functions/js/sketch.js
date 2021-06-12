@@ -15,6 +15,11 @@ var textBut;
 var imageBut;
 var shapeBut;
 
+let titDiv = null;
+let desDiv = null;
+
+let tempChose = null;
+
 function setup() {
     container = document.getElementById('canvas');
     tempBut = document.getElementById('tempMode');
@@ -88,7 +93,10 @@ function windowResized() {
     p3 = new Poster(canvasWidth/3, canvasHeight*3/4, paperSize/2, 3);
     p4 = new Poster(canvasWidth*2/3, canvasHeight*3/4, paperSize/2, 4);
 
-    temp = new Poster(canvasWidth/2, canvasHeight/2, paperSize, 1);
+    temp = new Poster(canvasWidth/2, canvasHeight/2, paperSize, tempChose);
+
+    titDiv.position(windowWidth/5, windowHeight/6);
+    desDiv.position(windowWidth/5, windowHeight*7/30);
 }
 
 function mouseClicked() {
@@ -98,18 +106,22 @@ function mouseClicked() {
     if (tempMode) {
         if ((mouseX > canvasWidth/3 - paperSize/4 && mouseX < canvasWidth/3 + paperSize/4)
         && (mouseY > canvasHeight/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight/4 + paperSize*sqrt(2)/4)) {
+            tempChose = 1;
             temp = p1;
             textChange();
         }else if ((mouseX > canvasWidth*2/3 - paperSize/4 && mouseX < canvasWidth*2/3 + paperSize/4)
         && (mouseY > canvasHeight/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight/4 + paperSize*sqrt(2)/4)) {
+            tempChose = 2;
             temp = p2;
             textChange();
         }else if ((mouseX > canvasWidth/3 - paperSize/4 && mouseX < canvasWidth/3 + paperSize/4)
         && (mouseY > canvasHeight*3/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight*3/4 + paperSize*sqrt(2)/4)) {
+            tempChose = 3;
             temp = p3;
             textChange();
         }else if ((mouseX > canvasWidth*2/3 - paperSize/4 && mouseX < canvasWidth*2/3 + paperSize/4)
         && (mouseY > canvasHeight*3/4 - paperSize*sqrt(2)/4 && mouseY < canvasHeight*3/4 + paperSize*sqrt(2)/4)) {
+            tempChose = 4
             temp = p4;
             textChange();
         }
@@ -119,6 +131,8 @@ function mouseClicked() {
 
 function tempChange() {
     if (!tempMode) {
+        temp = null;
+
         tempMode = true;
         textMode = false;
         imagemode = false;
@@ -136,12 +150,65 @@ function textChange() {
         tempBut.classList.remove('active');
         textBut.classList.add('active');
     }
+
+    if (textMode) {
+        var canvasWidth = container.offsetWidth;
+        const canvasHeight = 650;
+
+        titDiv = createDiv('');
+        let div0 = createDiv('');
+        let span0 = createSpan('Title');
+        let titInp = createInput('');
+
+        desDiv = createDiv('');
+        let div1 = createDiv('');
+        let span1 = createSpan('Description');
+        let desInp = createInput('');
+
+        titDiv.class('input-group mb-3');
+        div0.class('input-group-prepend');
+        span0.class('input-group-text');
+        titInp.class('form-control');
+        titInp.input(titleInput);
+
+        div0.child(span0);
+        titDiv.child(div0);
+        titDiv.child(titInp);
+
+        desDiv.class('input-group mb-3');
+        div1.class('input-group-prepend');
+        span1.class('input-group-text');
+        desInp.class('form-control');
+        desInp.input(desInput);
+
+        div1.child(span1);
+        desDiv.child(div1);
+        desDiv.child(desInp);
+
+        titDiv.position(windowWidth/5, windowHeight/6);
+        titDiv.size(300);
+
+        desDiv.position(windowWidth/5, windowHeight*7/30);
+        desDiv.size(300);
+    }
 }
 
 function imageChange() {
     if (!imagemode) {
         tempMode = false;
     }
+}
+
+function shapeChange() {
+
+}
+
+function titleInput() {
+    titleString = this.value();
+}
+
+function desInput() {
+    desString = this.value();
 }
 
 //Paper

@@ -60,9 +60,26 @@
           <div class="col-2">
             <div class="container text-center" style="width:11rem">
               <div class="btn-group-vertical" id="buttons">
-                <button type="button" id="tempMode" onclick="tempChange()" class="btn btn-secondary rounded-pill border-0 my-5" data-bs-toggle="tooltip" title="TEMPLATES">
+                <button type="button" id="tempMode" class="btn btn-secondary rounded-pill border-0 my-5" data-bs-toggle="modal" title="TEMPLATES" data-bs-target="#warning">
                   <img src="../assets/TemplateIcon.png" class="center-block" style="max-width: 60px;">
                 </button>
+                <div class="modal fade" id="warning" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Your work will be lost.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Change Template</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <button type="button" id="textMode" onclick="textChange()"class="btn btn-secondary rounded-pill border-0 my-5" data-bs-toggle="tooltip" title="TEXT">
                   <img src="../assets/TextIcon.png" class="center-block" style="max-height: 60px;">
                 </button>
