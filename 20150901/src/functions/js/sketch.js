@@ -75,7 +75,13 @@ function draw() {
     }
 
     if (textMode) {
-        temp.move();
+        temp.move(true);
+        temp.draw();
+        temp.drawText();
+        temp.drawImage();
+    }
+
+    if (imagemode) {
         temp.draw();
         temp.drawText();
         temp.drawImage();
@@ -131,13 +137,34 @@ function mouseClicked() {
 
 function tempChange() {
     if (!tempMode) {
-        temp = null;
-
         tempMode = true;
         textMode = false;
         imagemode = false;
         shapeMode = false;
+
+        titDiv.remove();
+        desDiv.remove();
+
+        var canvasWidth = container.offsetWidth;
+        const canvasHeight = 650;
+
+        temp = null;
+        tempChose = null;
+
+        p1 = new Poster(canvasWidth/3, canvasHeight/4, paperSize/2, 1);
+        p2 = new Poster(canvasWidth*2/3, canvasHeight/4, paperSize/2, 2);
+        p3 = new Poster(canvasWidth/3, canvasHeight*3/4, paperSize/2, 3);
+        p4 = new Poster(canvasWidth*2/3, canvasHeight*3/4, paperSize/2, 4);
+
+        tempBut.classList.add('active');
+        textBut.classList.remove('active');
+        imageBut.classList.remove('active');
     }
+}
+
+function textCheck() {
+    if (tempMode) return null;
+    else textChange();
 }
 
 function textChange() {
@@ -149,6 +176,7 @@ function textChange() {
 
         tempBut.classList.remove('active');
         textBut.classList.add('active');
+        if (imageBut.classList.contains('active')) imageBut.classList.remove('active');
     }
 
     if (textMode) {
@@ -194,8 +222,18 @@ function textChange() {
 }
 
 function imageChange() {
+    if (tempChose == null) return null;
+    if (textMode) {
+        titDiv.remove();
+        desDiv.remove();
+    }
     if (!imagemode) {
         tempMode = false;
+        textMode = false;
+        imagemode = true;
+
+        textBut.classList.toggle('active');
+        imageBut.classList.toggle('active');
     }
 }
 
@@ -226,6 +264,7 @@ class Poster {
         this.img = loadImage('../assets/BlackImage.png');
         this.canvasWidth = container.offsetWidth;
         this.canvasHeight = 650;
+        this.check;
     }
 
     draw() {
@@ -289,17 +328,19 @@ class Poster {
         }
     }
 
-    move() {
-        if (this.loc.x < this.canvasWidth/2 - 5) this.loc.x = this.loc.x + 6;
-        else if (this.loc.x > this.canvasWidth/2 + 5) this.loc.x = this.loc.x - 6;
+    move(check) {
+        if (check === true) {
+            if (this.loc.x < this.canvasWidth/2 - 5) this.loc.x = this.loc.x + 6;
+            else if (this.loc.x > this.canvasWidth/2 + 5) this.loc.x = this.loc.x - 6;
 
-        if (this.loc.y < this.canvasHeight/2 - 4) this.loc.y = this.loc.y + 4;
-        else if (this.loc.y > this.canvasHeight/2 + 4) this.loc.y = this.loc.y - 4;
-        if (this.sizeX < paperSize) {
-            this.sizeX = this.sizeX + 5;
-        }
-        if (this.sizeY < paperSize*sqrt(2)) {
-            this.sizeY = this.sizeY + 5*sqrt(2);
+            if (this.loc.y < this.canvasHeight/2 - 4) this.loc.y = this.loc.y + 4;
+            else if (this.loc.y > this.canvasHeight/2 + 4) this.loc.y = this.loc.y - 4;
+            if (this.sizeX < paperSize) {
+                this.sizeX = this.sizeX + 5;
+            }
+            if (this.sizeY < paperSize*sqrt(2)) {
+                this.sizeY = this.sizeY + 5*sqrt(2);
+            }
         }
     }
 }
