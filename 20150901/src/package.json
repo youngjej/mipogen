@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server",
-    "watch": "nodemon ./server --ignore client"
+    "watch": "nodemon ./server --ignore client",
+    "build": "babel src -d lib"
   },
   "keywords": [],
   "author": "",
