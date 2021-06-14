@@ -1,3 +1,5 @@
+const firebase = require('firebase');
+
 const firebaseConfig = {
   apiKey: "AIzaSyCae2uqJS-JQi2jhZn6OMT8Wr88VaIxZT4",
   authDomain: "minimal-poster-generator.firebaseapp.com",
@@ -8,7 +10,7 @@ const firebaseConfig = {
   measurementId: "G-8GFP2EKGC6"
 }
 
-firebaseConfig.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const express = require('express');
 const app = express()
